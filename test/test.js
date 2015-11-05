@@ -22,7 +22,7 @@ describe('Testing base PhantomJS functions', function () {
 
         async.each(testUrls, function (testUrl, callback) {
             base.openPage(testUrl, function (error, page, ph) {
-                ph.exit();
+                ph && ph.exit();
                 callback(error);
             });
         }, function (error) {
@@ -34,7 +34,7 @@ describe('Testing base PhantomJS functions', function () {
     it('Can fail to open pages gracefully', function (done) {
 
         base.openPage(INVALID_URL, function (error, page, ph) {
-            ph.exit();
+            ph && ph.exit();
             assert.ok(error, 'An error should be received when opening pages');
             done();
         });
